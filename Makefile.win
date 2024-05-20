@@ -1,0 +1,127 @@
+# Project: JackAdventure
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -std=c++11
+CC       = gcc.exe -std=c++11
+WINDRES  = windres.exe
+OBJ      = main.o Src/Application.o Src/GameManager/ResourceManager.o Src/GameManager/WindowConnector.o Src/GameObjects/GameButton.o Src/GameStateManager/GameStateBase.o Src/GameStateManager/GameStateMachine.o Src/GameStateManager/GSAbout.o Src/GameStateManager/GSEnd.o Src/GameStateManager/GSHighScore.o Src/GameStateManager/GSIntro.o Src/GameStateManager/GSMenu.o Src/GameStateManager/GSPlay.o Src/GameStateManager/GSSetting.o Src/GameObjects/Boss/Boss.o Src/GameObjects/Boss/BSAttack.o Src/GameObjects/Boss/BSJump.o Src/GameObjects/Boss/BSJumpbite.o Src/GameObjects/Collision/CollisionManager.o Src/GameObjects/Component/Animation.o Src/GameObjects/Component/Animation2d.o Src/GameObjects/Component/HitBox.o Src/GameObjects/Creeps/Creep.o Src/GameObjects/Creeps/CreepBat.o Src/GameObjects/Creeps/CreepManager.o Src/GameObjects/Creeps/CreepRino.o Src/GameObjects/ParallelBackground/Layer.o Src/GameObjects/ParallelBackground/ParallelBackground.o Src/GameObjects/Player/Player.o Src/GameObjects/Player/PSAttack.o Src/GameObjects/Player/PSDeath.o Src/GameObjects/Player/PSFall.o Src/GameObjects/Player/PSJump.o Src/GameObjects/Player/PSRun.o
+LINKOBJ  = main.o Src/Application.o Src/GameManager/ResourceManager.o Src/GameManager/WindowConnector.o Src/GameObjects/GameButton.o Src/GameStateManager/GameStateBase.o Src/GameStateManager/GameStateMachine.o Src/GameStateManager/GSAbout.o Src/GameStateManager/GSEnd.o Src/GameStateManager/GSHighScore.o Src/GameStateManager/GSIntro.o Src/GameStateManager/GSMenu.o Src/GameStateManager/GSPlay.o Src/GameStateManager/GSSetting.o Src/GameObjects/Boss/Boss.o Src/GameObjects/Boss/BSAttack.o Src/GameObjects/Boss/BSJump.o Src/GameObjects/Boss/BSJumpbite.o Src/GameObjects/Collision/CollisionManager.o Src/GameObjects/Component/Animation.o Src/GameObjects/Component/Animation2d.o Src/GameObjects/Component/HitBox.o Src/GameObjects/Creeps/Creep.o Src/GameObjects/Creeps/CreepBat.o Src/GameObjects/Creeps/CreepManager.o Src/GameObjects/Creeps/CreepRino.o Src/GameObjects/ParallelBackground/Layer.o Src/GameObjects/ParallelBackground/ParallelBackground.o Src/GameObjects/Player/Player.o Src/GameObjects/Player/PSAttack.o Src/GameObjects/Player/PSDeath.o Src/GameObjects/Player/PSFall.o Src/GameObjects/Player/PSJump.o Src/GameObjects/Player/PSRun.o
+LIBS     = -L"D:/Setup/Dev-Cpp/MinGW64/lib" -L"D:/Setup/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -L"D:/Setup/SFML-2.4.0/lib" -mwindows -lsfml-audio -lsfml-graphics -lsfml-system -lsfml-window
+INCS     = -I"D:/Setup/Dev-Cpp/MinGW64/include" -I"D:/Setup/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Setup/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Setup/SFML-2.4.0/include"
+CXXINCS  = -I"D:/Setup/Dev-Cpp/MinGW64/include" -I"D:/Setup/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Setup/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Setup/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++" -I"D:/Setup/SFML-2.4.0/include"
+BIN      = JackAdventure.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+Src/Application.o: Src/Application.cpp
+	$(CPP) -c Src/Application.cpp -o Src/Application.o $(CXXFLAGS)
+
+Src/GameManager/ResourceManager.o: Src/GameManager/ResourceManager.cpp
+	$(CPP) -c Src/GameManager/ResourceManager.cpp -o Src/GameManager/ResourceManager.o $(CXXFLAGS)
+
+Src/GameManager/WindowConnector.o: Src/GameManager/WindowConnector.cpp
+	$(CPP) -c Src/GameManager/WindowConnector.cpp -o Src/GameManager/WindowConnector.o $(CXXFLAGS)
+
+Src/GameObjects/GameButton.o: Src/GameObjects/GameButton.cpp
+	$(CPP) -c Src/GameObjects/GameButton.cpp -o Src/GameObjects/GameButton.o $(CXXFLAGS)
+
+Src/GameStateManager/GameStateBase.o: Src/GameStateManager/GameStateBase.cpp
+	$(CPP) -c Src/GameStateManager/GameStateBase.cpp -o Src/GameStateManager/GameStateBase.o $(CXXFLAGS)
+
+Src/GameStateManager/GameStateMachine.o: Src/GameStateManager/GameStateMachine.cpp
+	$(CPP) -c Src/GameStateManager/GameStateMachine.cpp -o Src/GameStateManager/GameStateMachine.o $(CXXFLAGS)
+
+Src/GameStateManager/GSAbout.o: Src/GameStateManager/GSAbout.cpp
+	$(CPP) -c Src/GameStateManager/GSAbout.cpp -o Src/GameStateManager/GSAbout.o $(CXXFLAGS)
+
+Src/GameStateManager/GSEnd.o: Src/GameStateManager/GSEnd.cpp
+	$(CPP) -c Src/GameStateManager/GSEnd.cpp -o Src/GameStateManager/GSEnd.o $(CXXFLAGS)
+
+Src/GameStateManager/GSHighScore.o: Src/GameStateManager/GSHighScore.cpp
+	$(CPP) -c Src/GameStateManager/GSHighScore.cpp -o Src/GameStateManager/GSHighScore.o $(CXXFLAGS)
+
+Src/GameStateManager/GSIntro.o: Src/GameStateManager/GSIntro.cpp
+	$(CPP) -c Src/GameStateManager/GSIntro.cpp -o Src/GameStateManager/GSIntro.o $(CXXFLAGS)
+
+Src/GameStateManager/GSMenu.o: Src/GameStateManager/GSMenu.cpp
+	$(CPP) -c Src/GameStateManager/GSMenu.cpp -o Src/GameStateManager/GSMenu.o $(CXXFLAGS)
+
+Src/GameStateManager/GSPlay.o: Src/GameStateManager/GSPlay.cpp
+	$(CPP) -c Src/GameStateManager/GSPlay.cpp -o Src/GameStateManager/GSPlay.o $(CXXFLAGS)
+
+Src/GameStateManager/GSSetting.o: Src/GameStateManager/GSSetting.cpp
+	$(CPP) -c Src/GameStateManager/GSSetting.cpp -o Src/GameStateManager/GSSetting.o $(CXXFLAGS)
+
+Src/GameObjects/Boss/Boss.o: Src/GameObjects/Boss/Boss.cpp
+	$(CPP) -c Src/GameObjects/Boss/Boss.cpp -o Src/GameObjects/Boss/Boss.o $(CXXFLAGS)
+
+Src/GameObjects/Boss/BSAttack.o: Src/GameObjects/Boss/BSAttack.cpp
+	$(CPP) -c Src/GameObjects/Boss/BSAttack.cpp -o Src/GameObjects/Boss/BSAttack.o $(CXXFLAGS)
+
+Src/GameObjects/Boss/BSJump.o: Src/GameObjects/Boss/BSJump.cpp
+	$(CPP) -c Src/GameObjects/Boss/BSJump.cpp -o Src/GameObjects/Boss/BSJump.o $(CXXFLAGS)
+
+Src/GameObjects/Boss/BSJumpbite.o: Src/GameObjects/Boss/BSJumpbite.cpp
+	$(CPP) -c Src/GameObjects/Boss/BSJumpbite.cpp -o Src/GameObjects/Boss/BSJumpbite.o $(CXXFLAGS)
+
+Src/GameObjects/Collision/CollisionManager.o: Src/GameObjects/Collision/CollisionManager.cpp
+	$(CPP) -c Src/GameObjects/Collision/CollisionManager.cpp -o Src/GameObjects/Collision/CollisionManager.o $(CXXFLAGS)
+
+Src/GameObjects/Component/Animation.o: Src/GameObjects/Component/Animation.cpp
+	$(CPP) -c Src/GameObjects/Component/Animation.cpp -o Src/GameObjects/Component/Animation.o $(CXXFLAGS)
+
+Src/GameObjects/Component/Animation2d.o: Src/GameObjects/Component/Animation2d.cpp
+	$(CPP) -c Src/GameObjects/Component/Animation2d.cpp -o Src/GameObjects/Component/Animation2d.o $(CXXFLAGS)
+
+Src/GameObjects/Component/HitBox.o: Src/GameObjects/Component/HitBox.cpp
+	$(CPP) -c Src/GameObjects/Component/HitBox.cpp -o Src/GameObjects/Component/HitBox.o $(CXXFLAGS)
+
+Src/GameObjects/Creeps/Creep.o: Src/GameObjects/Creeps/Creep.cpp
+	$(CPP) -c Src/GameObjects/Creeps/Creep.cpp -o Src/GameObjects/Creeps/Creep.o $(CXXFLAGS)
+
+Src/GameObjects/Creeps/CreepBat.o: Src/GameObjects/Creeps/CreepBat.cpp
+	$(CPP) -c Src/GameObjects/Creeps/CreepBat.cpp -o Src/GameObjects/Creeps/CreepBat.o $(CXXFLAGS)
+
+Src/GameObjects/Creeps/CreepManager.o: Src/GameObjects/Creeps/CreepManager.cpp
+	$(CPP) -c Src/GameObjects/Creeps/CreepManager.cpp -o Src/GameObjects/Creeps/CreepManager.o $(CXXFLAGS)
+
+Src/GameObjects/Creeps/CreepRino.o: Src/GameObjects/Creeps/CreepRino.cpp
+	$(CPP) -c Src/GameObjects/Creeps/CreepRino.cpp -o Src/GameObjects/Creeps/CreepRino.o $(CXXFLAGS)
+
+Src/GameObjects/ParallelBackground/Layer.o: Src/GameObjects/ParallelBackground/Layer.cpp
+	$(CPP) -c Src/GameObjects/ParallelBackground/Layer.cpp -o Src/GameObjects/ParallelBackground/Layer.o $(CXXFLAGS)
+
+Src/GameObjects/ParallelBackground/ParallelBackground.o: Src/GameObjects/ParallelBackground/ParallelBackground.cpp
+	$(CPP) -c Src/GameObjects/ParallelBackground/ParallelBackground.cpp -o Src/GameObjects/ParallelBackground/ParallelBackground.o $(CXXFLAGS)
+
+Src/GameObjects/Player/Player.o: Src/GameObjects/Player/Player.cpp
+	$(CPP) -c Src/GameObjects/Player/Player.cpp -o Src/GameObjects/Player/Player.o $(CXXFLAGS)
+
+Src/GameObjects/Player/PSAttack.o: Src/GameObjects/Player/PSAttack.cpp
+	$(CPP) -c Src/GameObjects/Player/PSAttack.cpp -o Src/GameObjects/Player/PSAttack.o $(CXXFLAGS)
+
+Src/GameObjects/Player/PSDeath.o: Src/GameObjects/Player/PSDeath.cpp
+	$(CPP) -c Src/GameObjects/Player/PSDeath.cpp -o Src/GameObjects/Player/PSDeath.o $(CXXFLAGS)
+
+Src/GameObjects/Player/PSFall.o: Src/GameObjects/Player/PSFall.cpp
+	$(CPP) -c Src/GameObjects/Player/PSFall.cpp -o Src/GameObjects/Player/PSFall.o $(CXXFLAGS)
+
+Src/GameObjects/Player/PSJump.o: Src/GameObjects/Player/PSJump.cpp
+	$(CPP) -c Src/GameObjects/Player/PSJump.cpp -o Src/GameObjects/Player/PSJump.o $(CXXFLAGS)
+
+Src/GameObjects/Player/PSRun.o: Src/GameObjects/Player/PSRun.cpp
+	$(CPP) -c Src/GameObjects/Player/PSRun.cpp -o Src/GameObjects/Player/PSRun.o $(CXXFLAGS)
