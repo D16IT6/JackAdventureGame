@@ -9,14 +9,14 @@ Animation2d::Animation2d(sf::Texture& texture, sf::Vector2i frameNum, float fram
 
 void Animation2d::Update(float DeltaTime)
 {
-	if (m_currentFrame.x == m_frameNum.x - 1 && m_modeStopAtEndFrame && m_currentFrameNum == m_frameTotals-1)
+	if (m_currentFrame.x == (m_frameNum.x-1) - 1 && m_modeStopAtEndFrame && m_currentFrameNum == m_frameTotals-1)
 		return;
 	m_currentTime += DeltaTime;
 	if (m_currentTime >= m_frameTime)
 	{
 		m_currentFrame.x++;
 		m_currentFrameNum++;
-		if (m_currentFrame.x == m_frameNum.x|| m_currentFrameNum == m_frameTotals)
+		if (m_currentFrame.x == m_frameNum.x|| ((m_currentFrame.y * m_frameNum.x + m_currentFrame.x) == m_frameTotals))
 		{
 			m_currentFrame.x = 0;
 			m_currentFrame.y++;

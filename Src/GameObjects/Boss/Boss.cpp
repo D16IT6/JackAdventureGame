@@ -10,6 +10,7 @@ Boss::Boss()
 	 m_jumpbiteState = new BSJumpbite(this);
 	 m_attackState = new BSAttack(this);
 	 m_currentState=m_jumpState;
+	 m_bossWeapon = new BossWeapon();
 }
 
 Boss::~Boss()
@@ -20,6 +21,8 @@ Boss::~Boss()
 		delete m_attackState;
 	if (m_jumpState != nullptr)
 		delete m_jumpState;
+	if (m_bossWeapon != nullptr)
+		delete m_bossWeapon;
 	m_currentState = nullptr;
 }
 
@@ -28,7 +31,7 @@ void Boss::changeNextState(IBState::STATE nextState)
 	m_nextState = nextState;
 }
 
-void Boss::Init()
+void Boss::Init(CollisionManager& collisionManager)
 {
 	m_jumpbiteState->Init();
 	m_attackState->Init();;
@@ -37,18 +40,31 @@ void Boss::Init()
 	m_hitBox->setPosition(100, groundY-(m_hitBox->getSize().y/2)+20);
 	m_hitBox->Init(sf::Vector2f(100,0));
 	m_hitBox->setTag(BOSS);
+
+	collisionManager.addObj(m_hitBox);
+
+	m_bossWeapon->Init(collisionManager);
+
 }
 
 void Boss::Update(float deltaTime)
 {
 	performState();
+	m_bossWeapon->Update(deltaTime);
 	m_currentState->Update(deltaTime);
+	
 }
 
 void Boss::Render(sf::RenderWindow* window)
 {
+	m_bossWeapon->Render(window);
 	m_currentState->Render(window);
 	window->draw(*m_hitBox);
+}
+
+BossWeapon* Boss::getBossWeapon()
+{
+	return m_bossWeapon;
 }
 
 HitBox* Boss::getHitBox()

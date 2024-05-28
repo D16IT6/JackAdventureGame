@@ -17,11 +17,12 @@ void PSDeath::Update(float deltaTime)
 {
 	m_animation->Update(deltaTime);
 	m_animation->setPosition(m_player->getHitBox()->getPosition());
-	/*m_currentTime += deltaTime;
+	m_currentTime += deltaTime;
 	if (m_currentTime > m_timeRemain)
 	{
-		GSM->PopState();
-	}*/
+		GSM->ChangeState(END);
+		Data->getMusic("Uprising")->stop();
+	}
 }
 
 void PSDeath::Render(sf::RenderWindow* window)

@@ -49,6 +49,49 @@ void GSSettings::Init()
 	exitButton->setSize(sf::Vector2f(50, 50));
 	exitButton->setOrigin(exitButton->getSize() / 2.f);
 	m_listButton.push_back(exitButton);
+
+	//AllowSound
+	GameButton* soundButton = new GameButton();
+	
+	/*music_off*/
+	soundButton->Init("misic");
+	/*[] khai bao ham
+	() chuyen tham so
+	{} than ham*/
+	soundButton->setOnclick([]() {
+			Data->setAllowSound(true);
+		});
+	soundButton->setPosition(screenWidth / 2 + screenWidth / 12, screenHeigth / 2);
+	if (!Data->getAllowSound())
+	{
+		soundButton->setSize(sf::Vector2f(50, 50));
+	}
+	else
+	{
+		soundButton->setSize(sf::Vector2f(100, 100));
+	}
+	soundButton->setOrigin(soundButton->getSize() / 2.f);
+	m_listButton.push_back(soundButton);
+
+	GameButton* soundButtonOff = new GameButton();
+
+	/*music_off*/
+	soundButtonOff->Init("music_off");
+	soundButtonOff->setOnclick([]() {
+		Data->setAllowSound(false);
+		});
+	soundButtonOff->setPosition(screenWidth / 2 - screenWidth / 12, screenHeigth / 2);
+
+	if (Data->getAllowSound())
+	{
+		soundButtonOff->setSize(sf::Vector2f(50, 50));
+	}
+	else
+	{
+		soundButtonOff->setSize(sf::Vector2f(100, 100));
+	}
+	soundButtonOff->setOrigin(soundButtonOff->getSize() / 2.f);
+	m_listButton.push_back(soundButtonOff);
 }
 
 void GSSettings::Update(float deltaTime)

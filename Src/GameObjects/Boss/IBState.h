@@ -1,6 +1,7 @@
 #pragma once
 #include "../../GameManager/ResourceManager.h"
 #include"../../GameStateManager/GameStateMachine.h"
+#include"../../GameObjects/Bullet/BossWeapon.h"
 class IBState
 {
 public:

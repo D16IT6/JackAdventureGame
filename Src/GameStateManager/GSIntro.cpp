@@ -1,5 +1,5 @@
 #include "GSIntro.h"
-
+#include <fstream>
 GSIntro::GSIntro()
 {
     currentTime = 0.f;
@@ -23,6 +23,11 @@ void GSIntro::Resume()
 
 void GSIntro::Init()
 {
+    std::fstream input("texture.txt", std::ios::in);
+    std::string name;
+    getline(input, name);
+    Data->addTextture(name);
+    input.close();
     sf::Texture* texture = Data->getTexture("Logo");
     m_Logo.setTexture(*texture);
     m_Logo.setPosition(screenWidth / 2, screenHeigth / 2);
@@ -32,7 +37,7 @@ void GSIntro::Init()
 void GSIntro::Update(float deltaTime)
 {
     currentTime += deltaTime;
-    if (currentTime > 0.f)
+    if (currentTime > 2.f)
     {
         GameStateMachine::GetInstance()->ChangeState(StateTypes::MENU);
     }

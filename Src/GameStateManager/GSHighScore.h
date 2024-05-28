@@ -16,4 +16,5 @@ private:
 	std::list<GameButton*> m_listButton;
 	sf::Sprite m_background;
 	sf::Text m_title;
+	std::list<sf::Text*> m_ListScore;
 };

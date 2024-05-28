@@ -1,5 +1,4 @@
 #include "BSAttack.h"
-
 BSAttack::BSAttack(IBoss* boss)
 {
 	m_boss = boss;
@@ -10,7 +9,7 @@ void BSAttack::Init()
 	std::string path = "Boss1/";
 	m_animation = new Animation2d(*Data->getTexture(path + "poison-attack"), sf::Vector2i(6, 3), 0.1f,17);
 	m_currentTime = 0.f;
-	m_changeTime = 3.f;
+	m_changeTime = 1.f;
 }
 
 void BSAttack::Update(float deltaTime)
@@ -20,9 +19,13 @@ void BSAttack::Update(float deltaTime)
 	pos.y += 27;
 	m_currentTime += deltaTime;
 	Animation2d* ani = (Animation2d*)m_animation;
-	if (m_currentTime > m_changeTime && (ani->getFrameTotals() - 1 == ani->getCurrentFrameCount()))
+	if (ani->getFrameTotals() - 1 == ani->getCurrentFrameCount())
 	{
-			m_boss->changeNextState(STATE::JUMPBITE);
+		sf::Vector2f pos = m_boss->getHitBox()->getPosition();
+		pos.y += 60;
+		pos.x += m_boss->getHitBox()->getSize().x-20;
+		m_boss->getBossWeapon()->Fire(pos);
+		m_boss->changeNextState(STATE::JUMPBITE);
 	}
 	if (m_boss->getHitBox()->getPosition().x >100)
 	{

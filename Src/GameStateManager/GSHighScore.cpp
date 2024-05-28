@@ -6,6 +6,16 @@ GSHighScore::GSHighScore()
 
 GSHighScore::~GSHighScore()
 {
+	for (auto it : m_listButton) {
+		if (it != nullptr) {
+			delete it;
+		}
+	}
+	for (auto it : m_ListScore) {
+		if (it != nullptr) {
+			delete it;
+		}
+	}
 }
 
 void GSHighScore::Exit()
@@ -49,6 +59,15 @@ void GSHighScore::Init()
 	exitButton->setSize(sf::Vector2f(50, 50));
 	exitButton->setOrigin(exitButton->getSize() / 2.f);
 	m_listButton.push_back(exitButton);
+
+	//ListScore
+	for (int i = 0; i < ScoreManager::GetInstance()->getNum(); i++) {
+		sf::Text* t = new sf::Text();
+		t->setString("Top "+ std::to_string(i+1)+": " + std::to_string(ScoreManager::GetInstance()->getHighScore()[i]));
+		t->setFont(*Data->getFont("Sakana"));
+		t->setPosition(screenWidth / 2-50, screenHeigth / 2 - 50 + 30 * i);
+		m_ListScore.push_back(t);
+	}
 }
 
 void GSHighScore::Update(float deltaTime)
@@ -65,5 +84,8 @@ void GSHighScore::Render(sf::RenderWindow* renderWindow)
 	renderWindow->draw(m_title);
 	for (auto button : m_listButton) {
 		button->Render(renderWindow);
+	}
+	for (auto it : m_ListScore) {
+		renderWindow->draw(*it);
 	}
 }

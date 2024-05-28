@@ -23,7 +23,7 @@ void CollisionManager::Update()
 			if (!checkCollision(a, b)) continue;
 			if (a->getTag() == PLAYER)
 			{
-				if (b->getTag() == CREEP)
+				if (b->getTag() == CREEP||b->getTag()==Tag::BULLETBOSS)
 				{
 					a->setAlive(false);
 					b->setAlive(false);
@@ -33,9 +33,15 @@ void CollisionManager::Update()
 					a->setAlive(false);
 				}
 			}
-			if (a->getTag() == BOSS && b->getTag() == CREEP)
+			if (a->getTag() == CREEP)
 			{
-				b->setAlive(false);
+				if(b->getTag()==Tag::BOSS)
+				a->setAlive(false);
+				if (b->getTag() == Tag::BULLETPLAYER)
+				{
+					a->setAlive(false);
+					b->setAlive(false);
+				}
 			}
 
 		}

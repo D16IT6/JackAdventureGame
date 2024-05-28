@@ -16,7 +16,7 @@ void PSJump::Update(float deltaTime)
 {
 	m_animation->Update(deltaTime);
 	m_currentTime += deltaTime;
-	/*std::cout << deltaTime<<"/"<<m_currentTime<<"\n";*/
+	//std::cout << m_player->getHitBox()->getVelogcity().y <<"\n";
 	float g = 10; 
 	//v=g*t
 	float v = g * m_currentTime;
@@ -34,6 +34,11 @@ void PSJump::Update(float deltaTime)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		m_player->getHitBox()->move(m_player->getHitBox()->getVelogcity().x * deltaTime, 0);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+	{
+		m_player->prevState(IPState::JUMP);
+		m_player->changeNextState(IPState::ATTACKJUMP);
 	}
 	if (!m_player->getHitBox()->getAlive())
 	{
@@ -53,4 +58,5 @@ void PSJump::Reset()
 	m_currentTime = 0.f;
 	m_animation->Reset();
 }
+
 

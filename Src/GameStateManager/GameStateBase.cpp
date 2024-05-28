@@ -31,6 +31,9 @@ GameStateBase* GameStateBase::CreateState(StateTypes st)
 		case HIGHSCORE:
 			gs = new GSHighScore();
 			break;
+		case END:
+			gs = new GSEnd();
+			break;
 		default:
 			break;
 		}

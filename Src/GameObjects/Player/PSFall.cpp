@@ -10,7 +10,6 @@ void PSFall::Init()
 	std::string path = "Character/";
 	m_animation = new Animation(*Data->getTexture(path + "Fall"), sf::Vector2i(2, 1), 0.1f);
 	m_animation->setModeAtEndFrame(true);
-	m_currentTime = 0.f;
 }
 
 void PSFall::Update(float deltaTime)
@@ -20,7 +19,8 @@ void PSFall::Update(float deltaTime)
 	float g = 10;
 	//v=g*t
 	float v = g * m_currentTime;
-	if (m_player->getHitBox()->getPosition().y >= groundY-10)
+	m_player->getHitBox()->move(0,  v);
+	if (m_player->getHitBox()->getPosition().y >= groundY)
 	{
 		if (!m_player->getHitBox()->getAlive())
 		{
@@ -30,9 +30,9 @@ void PSFall::Update(float deltaTime)
 		{
 			m_player->changeNextState(STATE::RUN);
 		}
-		m_currentTime = 0;
+		m_currentTime = 0.f;
 	}
-	m_player->getHitBox()->move(0,  v);
+	
 	if (m_player->getHitBox()->getAlive())
 	{
 		

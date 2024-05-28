@@ -1,14 +1,14 @@
 #pragma once
 #include"../../GameManager/ResourceManager.h"
 #include"../Component/HitBox.h"
-class Creep
+class BulletPlayer
 {
 public:
-	Creep();
-	~Creep();
-	virtual void Init();
-	virtual void Update(float deltaTime);
-	virtual void Render(sf::RenderWindow* window);
+	BulletPlayer();
+	~BulletPlayer();
+	void Init();
+	void Update(float deltaTime);
+	void Render(sf::RenderWindow* window);
 	HitBox* getHitbox() { return m_hitbox; };
 	void setStartPoint(sf::Vector2f startPoint) { m_startPoint = startPoint; };
 	bool getStop() { return m_stop; };
@@ -20,5 +20,4 @@ protected:
 	Animation* m_RunAni;
 	Animation* m_DeathAni;
 	bool m_stop;
-	bool m_SoundDeadIsPlay;
 };

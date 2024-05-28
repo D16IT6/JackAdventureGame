@@ -1,6 +1,7 @@
 #pragma once
 #include "../../GameManager/ResourceManager.h"
 #include"../../GameStateManager/GameStateMachine.h"
+#include"../../GameObjects/Bullet/PlayerWeapon.h"
 class IPState
 {
 public:
@@ -11,6 +12,7 @@ public:
 		FALL,
 		DEATH,
 		ATTACK,
+		ATTACKJUMP,
 		SNULL
 	};
 	virtual void Init()=0;

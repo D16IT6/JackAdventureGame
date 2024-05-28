@@ -9,6 +9,7 @@ void PSRun::Init()
 {
 	std::string path = "Character/";
 	m_animation = new Animation(*Data->getTexture(path+"Run"), sf::Vector2i(8,1), 0.1f);
+	//m_animation->setScale(-1, 1);
 }
 
 void PSRun::Update(float deltaTime)
@@ -20,11 +21,17 @@ void PSRun::Update(float deltaTime)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
+	/*	m_player->get*/
 		m_player->getHitBox()->move(-m_player->getHitBox()->getVelogcity().x*deltaTime,0);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		m_player->getHitBox()->move(m_player->getHitBox()->getVelogcity().x*deltaTime, 0);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+	{
+		m_player->prevState(IPState::RUN);
+		m_player->changeNextState(IPState::ATTACK);
 	}
 	if (!m_player->getHitBox()->getAlive())
 	{

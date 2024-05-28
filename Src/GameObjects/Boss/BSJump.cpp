@@ -15,6 +15,7 @@ void BSJump::Init()
 
 void BSJump::Update(float deltaTime)
 {
+
 	m_animation->Update(deltaTime);
 	m_currentTime += deltaTime;
 	Animation2d * ani = (Animation2d*)m_animation;
@@ -46,5 +47,6 @@ void BSJump::Reset()
 {
 	m_animation->Reset();
 	m_currentTime = 0.f;
+
 }
 

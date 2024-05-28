@@ -78,6 +78,9 @@ void GSMenu::Init()
 	aboutButton->setOrigin(aboutButton->getSize() / 2.f);
 	aboutButton->setOnclick([]() {GSM->ChangeState(StateTypes::ABOUT); });
 	m_listButton.push_back(aboutButton);
+
+	//read file
+	SCOREMANAGER->readFile();
 }
 
 void GSMenu::Update(float deltaTime)

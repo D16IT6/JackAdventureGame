@@ -12,5 +12,10 @@ public:
 	void Update(float deltaTime);
 	void Render(sf::RenderWindow* renderWindow);
 private:
+	std::list<GameButton*> m_listButton;
+	sf::Sprite m_background;
+	sf::Text m_title;
 
+	sf::Text m_bestScore;
+	sf::Text m_currentScore;
 };

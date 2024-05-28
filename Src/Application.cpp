@@ -47,4 +47,4 @@ Application::~Application()
 {
 	if (m_window != nullptr)
 		delete m_window;
-}
+	}

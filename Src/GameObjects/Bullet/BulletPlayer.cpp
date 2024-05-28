@@ -1,12 +1,11 @@
-#include "Creep.h"
+#include "BulletPlayer.h"
 
-Creep::Creep()
+BulletPlayer::BulletPlayer()
 {
 	m_stop = true;
-	m_SoundDeadIsPlay = false;
 }
 
-Creep::~Creep()
+BulletPlayer::~BulletPlayer()
 {
 	m_currentAni = nullptr;
 	if (m_DeathAni != nullptr)
@@ -15,40 +14,36 @@ Creep::~Creep()
 		delete m_RunAni;
 }
 
-void Creep::Init()
+void BulletPlayer::Init()
 {
-	m_hitbox = new HitBox(sf::Vector2i(45, 28));
-	m_hitbox->Init(sf::Vector2f(200, 0));
-	m_hitbox->setPosition(screenWidth, groundY);
-	std::string pathRino = "Rino/";
-	m_RunAni = new Animation(*Data->getTexture(pathRino + "Run (52x34)"), sf::Vector2i(6, 1), 0.1f);
-	m_DeathAni = new Animation(*Data->getTexture(pathRino + "Hit (52x34)"), sf::Vector2i(5, 1), 0.1f);
+	m_hitbox = new HitBox(sf::Vector2i(35, 25));
+	m_hitbox->Init(sf::Vector2f(300, 0));
+	m_hitbox->setPosition(screenWidth, groundY - 200);
+	std::string pathBoss = "Character/";
+	m_RunAni = new Animation(*Data->getTexture(pathBoss + "ArrowSpit"), sf::Vector2i(1, 1), 0.1f);
+	m_DeathAni = new Animation(*Data->getTexture(pathBoss + "ArrowImpact"), sf::Vector2i(5, 1), 0.1f);
 	m_currentAni = m_RunAni;
+	m_hitbox->setTag(Tag::BULLETPLAYER);
 }
 
-void Creep::Update(float deltaTime)
+void BulletPlayer::Update(float deltaTime)
 {
 	if (m_stop) return;
 	if (m_hitbox->getAlive())
 	{
 		m_currentAni->Update(deltaTime);
-		m_hitbox->move(-this->getHitbox()->getVelogcity().x * deltaTime, 0);
+		m_hitbox->move(this->getHitbox()->getVelogcity().x * deltaTime, 0);
 		m_currentAni->setPosition(this->getHitbox()->getPosition());
-		if (m_currentAni->getPosition().x <= -50)
+		if (m_currentAni->getPosition().x >screenWidth+20)
 		{
-			m_hitbox->setPosition(m_startPoint);
+			/*m_hitbox->setPosition(m_startPoint);*/
 			m_stop = true;
 			m_hitbox->setAlive(false);
 		}
-			
+
 	}
 	else
 	{
-		if (!m_SoundDeadIsPlay)
-		{
-			Data->playSound("monster-hurt");
-			m_SoundDeadIsPlay = true;
-		}
 		m_currentAni = m_DeathAni;
 		if (m_currentAni->getCurrentFrame().x != m_currentAni->getFrameNum().x - 1)
 		{
@@ -57,20 +52,19 @@ void Creep::Update(float deltaTime)
 		}
 		else m_stop = true;
 	}
-	
+
 }
 
-void Creep::Render(sf::RenderWindow* window)
+void BulletPlayer::Render(sf::RenderWindow* window)
 {
 	if (m_stop) return;
 	window->draw(*m_currentAni);
 	window->draw(*m_hitbox);
 }
 
-void Creep::Reset()
+void BulletPlayer::Reset()
 {
 	m_stop = false;
-	m_SoundDeadIsPlay = false;
 	m_DeathAni->Reset();
 	m_RunAni->Reset();
 	m_currentAni = m_RunAni;

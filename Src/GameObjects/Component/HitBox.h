@@ -4,7 +4,9 @@ enum Tag
 {
 	PLAYER,
 	CREEP,
-	BOSS
+	BOSS,
+	BULLETBOSS,
+	BULLETPLAYER,
 };
 class HitBox : public sf::RectangleShape
 {

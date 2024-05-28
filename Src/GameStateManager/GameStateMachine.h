@@ -1,5 +1,6 @@
 #pragma once
-#include"../GameManager/Singleton.h"
+#include "../GameObjects/ScoreManager.h"
+//#include"../GameManager/Singleton.h"
 #include<list>
 #define GSM GameStateMachine::GetInstance()
 class GameStateBase;

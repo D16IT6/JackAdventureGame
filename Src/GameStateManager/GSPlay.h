@@ -24,4 +24,8 @@ private:
 	CreepManager m_CreepManager;
 	CollisionManager m_collisionManager;
 	Boss m_boss;
+
+	sf::Text m_currentTextScore;
+	float m_currentTime;
+	int m_currentScore;
 };
